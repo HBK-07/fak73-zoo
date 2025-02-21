@@ -13,8 +13,8 @@ routerPersonal.post("/", async (c) => {
   const text = `INSERT INTO "Personal"(name, rolle, gehalt) VALUES ($1,$2,$3) RETURNING *`;
   const values = [
     requestPersonal.name,
-    requestPersonal.role,
-    requestPersonal.salary,
+    requestPersonal.rolle,
+    requestPersonal.gehalt,
   ];
   const response = await getPool().query(text, values);
   return c.json(response.rows);
