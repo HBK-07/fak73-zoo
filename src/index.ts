@@ -7,9 +7,11 @@ import { routerCompounts } from "./routes/compounts.js";
 import { routerPersonal } from "./routes/personal.js";
 import { routerSales } from "./routes/sales.js";
 import { routerZoo } from "./routes/zoo.js";
+import { cors } from "hono/cors";
 
 config();
 const app = new Hono();
+app.use(cors());
 app.route("/animals", routerAnimal);
 app.route("/component", routerCompounts);
 app.route("/personal", routerPersonal);
