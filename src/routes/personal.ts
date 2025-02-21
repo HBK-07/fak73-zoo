@@ -10,7 +10,7 @@ routerPersonal.get("/", async (c) => {
 
 routerPersonal.post("/", async (c) => {
   const requestPersonal = await c.req.json();
-  const text = `INSERT INTO "Personal"(name, role, salary) VALUES ($1,$2,$3) RETURNING *`;
+  const text = `INSERT INTO "Personal"(name, rolle, gehalt) VALUES ($1,$2,$3) RETURNING *`;
   const values = [
     requestPersonal.name,
     requestPersonal.role,
