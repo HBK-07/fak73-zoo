@@ -19,3 +19,20 @@ routerPersonal.post("/", async (c) => {
   const response = await getPool().query(text, values);
   return c.json(response.rows);
 });
+
+routerPersonal.delete("/:id", async (c) => {
+  const id = c.req.param("id");
+  const text = `DELETE FROM "Personal" WHERE id = $1 RETURNING *`;
+  const values = [id];
+
+  const result = await getPool().query(text, values);
+
+  if (result.rowCount === 0) {
+    return c.json({ message: "Kein Eintrag gefunden" }, 404);
+  }
+
+  return c.json({
+    message: "Eintrag erfolgreich gelöscht",
+    deleted: result.rows[0],
+  });
+});
